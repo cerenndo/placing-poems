@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+      <!-- Author: Ceren Dolma -->
+    <meta charset="utf-8">
+    <title>Poetry Day Ireland</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="http://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+    <script src="http://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScWQDtDbnHfbBVN3edGqSrud-HjV180Db5eOBC9oL8lHEGLoQ/viewform?embedded=true" width="640" height="820" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    <div id="outputDiv">Click on the map to see coordinates!</div>
+
+  </head>
+
+
+<body>
+<div id="map">
+  
+</div>
+
+<script>
+var map = L.map('map').setView([53.4, -7.7], 7);
+
+var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+	maxZoom: 20,
+	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+});
+Stadia_AlidadeSmoothDark.addTo(map);
+
+var addedMarker = {};
+map.on("mousedown", function (event) {
+   console.log("Coordinates: " + event.latlng.toString());
+
+   if (addedMarker != undefined) {
+     map.removeLayer(addedMarker);
+    };
+
+  addedMarker = L.marker(event.latlng).addTo(map);
+  
+  document.getElementById("outputDiv").innerHTML = "Coordinates: " + event.latlng.toString();
+
+
+
+}); 
+
+
+
+</script>
+</body>
