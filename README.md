@@ -1,2 +1,2 @@
 # placing-poems.github.io
-Interactive Project Developed for Poetry Day Ireland 2021
+Interactive Mapping Project Developed for Poetry Day Ireland 2021
