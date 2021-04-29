@@ -64,7 +64,13 @@ p,ul{
     position: relative;
 }
 
-#submitButton {
+.custom-popup .leaflet-popup-content-wrapper {
+  white-space: pre;
+  width: fit-content;
+  }
+
+
+/* #submitButton {
     position: relative;
     top: 2%;
     left: 5%;
@@ -106,7 +112,7 @@ iframe{
     height: 95%;
     width: 100%;
     left: 50%;
-}
+} */
 
 
 #credits{
@@ -123,6 +129,4 @@ h6{
     font-family: 'Roboto', sans-serif;
     margin-top: 5px;
     font-size: 10px;
-
-
 }

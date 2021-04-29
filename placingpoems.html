@@ -14,10 +14,15 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
+
+    <link rel="stylesheet" href="src/L.Control.Sidebar.css" />
+
+    <!-- Load jQuery and PapaParse to read data from a CSV file -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+      
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   </head>
-
 
 <body>
 
@@ -30,66 +35,32 @@
     <a href="contact.html">CONTACT</a>
 </div>
 
-<div id="map">
-  <button onclick="showSurvey()" id="submitButton">PLACE YOUR POEM</button>
-  <div id="forms"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScWQDtDbnHfbBVN3edGqSrud-HjV180Db5eOBC9oL8lHEGLoQ/viewform?embedded=true"  frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> </div>
+<div class='custom-popup' id="map">
   </div>
 
+  <div id="sidebar">
+    <h3 id="Title"></h3>
+    <h6 id="Poem">
+      In April 2020, Placing Poems gave an opportunity for anyone 
+      to write about these journeys and place them on a public, 
+      interactive map. We received contributions about journeys, 
+      grand or small, real or imagined, taken or anticipated, from 
+      across the world. 
+      
+      We combined all the contributions into one map, representing 
+      many poetic journeys and creating a poetic cartography of 
+      anticipated adventures for everyone to enjoy for 
+      Poetry Day Ireland and beyond. 
 
-<script>
+      <em>Click on a marker to read a poem!</em>
 
-    var map = L.map('map').setView([53, -5], 7);
-    map.options.minZoom = 5;
-    
-  
-    var MapBoxLight = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiY2VyZW5kb2xtYSIsImEiOiJjam9vZWZjM2wxaGx3M3Bsc2gya3hlM3ZkIn0.h5NY1p7um8zNKnRHxnVrxQ', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        //id: 'cerendolma/cknrm6yvk0w6r17mjae8mdsfi',
-        id: 'mapbox/light-v10',
+      <em>Zoom out to explore more journeys.</em>
+    </h6>
+  </div>
 
-        tileSize: 512,
-        zoomOffset: -1
-      }).addTo(map);
+<script src="src/L.Control.Sidebar.js"></script>
+<script src="src/main.js"></script>
 
-    var pinkIcon = L.icon({
-    iconUrl: 'assets/images/marker.png',
-    iconSize:     [60, 60], // size of the icon
-    iconAnchor:   [30, 50],
-    popupAnchor:  [0, -45] // point from which the popup should open relative to the iconAnchor
-  });
-  
-  // when clicked on map, removes any existing marker and adds new one with lat long information pop-up
-    var addedMarker = {};
-    map.on("click", function (event) {
-    
-       if (addedMarker != undefined) {
-         map.removeLayer(addedMarker);
-        };
-    
-      addedMarker = L.marker(event.latlng, {icon: pinkIcon}).addTo(map);
-      addedMarker.bindPopup('<b>' + "LATITUDE: " + '</b>' + event.latlng.lat + '<br>'+ '<b>' + "LONGITUDE: " + '</b>' + event.latlng.lng).openPopup();
-  
-  }); 
-  
-  // when clickedsurvey appeaars
-  function showSurvey() {
-    event.stopPropagation(); // this line stops the on click function of the map
-    var x = document.getElementById("forms");
-    if (x.style.display === "block") {
-      x.style.display = "none";
-      document.getElementById("submitButton").innerHTML = "PLACE YOUR POEM";
-    } else {
-      x.style.display = "block";
-      document.getElementById("submitButton").innerHTML = "CLOSE";
-    }
-  }
-
-
-
-    
-</script>
 
 </body>
 
